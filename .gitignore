@@ -1,0 +1,58 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+*.log
+*.pot
+*.pyc
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+
+# Virtualenv
+venv/
+.env/
+.env.bak/
+venv.bak/
+*.bak
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Django migrations
+*/migrations/*
+
+# Local environment variables
+.env
+
+# Media and static files
+/static/
+media/
+
+# Database files (e.g., SQLite)
+db.sqlite3
+
+# Coverage report files
+.coverage
+coverage.xml
+*.cover
+
+# Test-related files
+nosetests.xml
+test*.log
+pytestdebug.log
