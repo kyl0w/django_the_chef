@@ -1,6 +1,6 @@
 # Variables
 PYTHON = python
-DJANGO_PROJECT_DIR = django_project
+DJANGO_PROJECT_DIR = .
 MANAGE = $(PYTHON) $(DJANGO_PROJECT_DIR)/manage.py
 
 # Linter directory
@@ -42,7 +42,15 @@ lint:
 format:
 	black $(DJANGO_PROJECT_DIR)
 
-# Help
+lint:
+	flake8 .
+
+format:
+	black .
+
+format-lint: 
+	lint format
+
 help:
 	@echo "Available commands:"
 	@echo "  run              - Start the development server."
@@ -54,6 +62,7 @@ help:
 	@echo "  install          - Install project dependencies."
 	@echo "  freeze           - Freeze the current dependencies to requirements.txt."
 	@echo "  test             - Run Django tests."
-	@echo "  lint             - Run linter (flake8) to check code style."
-	@echo "  format           - Format code with black."
+	@echo "  make format          - Run Black to automatically format the code"
+	@echo "  make lint            - Run Flake8 to check for style violations"
+	@echo "  make format-lint - Run Black to format the code and Flake8 to check for violations"
 	@echo "  help             - Show this help message."

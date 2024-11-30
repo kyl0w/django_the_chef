@@ -1,0 +1,11 @@
+# .flake8
+
+[flake8]
+# Set the maximum line length to 88, aligning with Black's default line length
+max-line-length = 88
+exclude = 
+    .tox,
+    .venv,
+    __pycache__,
+    migrations,
+    manage.py
