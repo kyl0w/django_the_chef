@@ -3,10 +3,124 @@
 {% block title %}Welcome - The Chef{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h1 class="display-4">Welcome to The Chef</h1>
-    <p class="lead">Discover our delicious menu and make your reservation today!</p>
-    <a href="/menu" class="btn btn-primary btn-lg">Browse Menu</a>
-</div>
+<!-- Main Content Section (Larger) -->
+<section class="hero bg-primary text-white py-6 py-lg-7" style="height: 50vh;">
+    <div class="container text-center h-100 d-flex flex-column justify-content-center">
+        <h1 class="display-3 fw-bold">Welcome to The Chef</h1>
+        <p class="lead mb-4">A place where culinary artistry meets exquisite taste. Explore our menu, reserve a table, and experience exceptional dining today!</p>
+        <a href="/menu" class="btn btn-light btn-lg shadow-sm mt-3">Explore the Menu</a>
+    </div>
+</section>
+
+
+<!-- Animated About Section -->
+<section class="about py-5">
+    <div class="container text-center">
+        <h2 class="h3 mb-4" data-aos="fade-up">Our Story</h2>
+        <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">At The Chef, we combine the freshest ingredients with creative cooking to bring you a dining experience like no other. Whether you're here for a casual meal or a special celebration, we promise to deliver quality food, excellent service, and a cozy atmosphere.</p>
+        
+        <!-- Animated content -->
+        <div class="about-content row justify-content-center">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card shadow-sm about-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Ingredients</h5>
+                        <p class="card-text">We only use the finest, locally sourced ingredients to create our dishes. Freshness is at the heart of every meal we serve.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="card shadow-sm about-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Creative Cooking</h5>
+                        <p class="card-text">Our talented chefs use innovative techniques to craft dishes that are both visually stunning and delicious.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="800">
+                <div class="card shadow-sm about-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Memorable Experience</h5>
+                        <p class="card-text">From the moment you walk in, we aim to create an experience that will leave you wanting to come back again and again.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="/about" class="btn btn-outline-primary mt-4">Learn More About Us</a>
+    </div>
+</section>
+
+<!-- Special Offers Section -->
+<section class="offers bg-light py-5">
+    <div class="container text-center">
+        <h2 class="h3 mb-4">Today's Special</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Signature Dish 1</h5>
+                        <p class="card-text">A classic favorite. Rich flavors that will delight your taste buds. Don't miss out on this masterpiece.</p>
+                        <a href="/menu#dish-1" class="btn btn-primary">View Dish</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Signature Dish 2</h5>
+                        <p class="card-text">Delicately crafted to offer the perfect balance of taste and texture. A must-try for adventurous eaters!</p>
+                        <a href="/menu#dish-2" class="btn btn-primary">View Dish</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Signature Dish 3</h5>
+                        <p class="card-text">A hearty option for those craving something filling yet satisfying. Made to warm both your heart and soul.</p>
+                        <a href="/menu#dish-3" class="btn btn-primary">View Dish</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials bg-dark text-white py-5">
+    <div class="container text-center">
+        <h2 class="h3 mb-4">What Our Guests Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"The food was absolutely delicious, and the atmosphere was so warm and inviting. I can't wait to come back!"</p>
+                    <footer class="blockquote-footer text-light">Jane Doe, Food Critic</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"A perfect place for a romantic dinner. The chef really knows how to create magic with food!"</p>
+                    <footer class="blockquote-footer text-light">John Smith, Regular Customer</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"Excellent service, superb quality, and a fantastic dining experience. Highly recommend!"</p>
+                    <footer class="blockquote-footer text-light">Emily Davis, Blogger</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="cta py-5 bg-primary text-white text-center">
+    <div class="container">
+        <h2 class="display-4 mb-4">Ready to Experience Culinary Excellence?</h2>
+        <p class="lead mb-4">Join us for a meal that will leave you wanting more. Reserve your table today!</p>
+        <a href="/reservations" class="btn btn-light btn-lg">Reserve Now</a>
+    </div>
+</section>
 
 {% endblock %}

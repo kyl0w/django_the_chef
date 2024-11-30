@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    'widget_tweaks',
     # APPS
     "apps.accounts",
     "apps.worker",
@@ -138,3 +139,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+LOGIN_URL = "/login"
+
+LOGIN_REDIRECT_URL = "/home"
+LOGOUT_REDIRECT_UTL  = "/login"
