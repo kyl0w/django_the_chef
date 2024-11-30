@@ -13,7 +13,7 @@ run:
 migrate:
 	$(MANAGE) migrate
 
-makemigrations:
+migrations:
 	$(MANAGE) makemigrations
 
 createsuperuser:

@@ -16,8 +16,7 @@ class CustomUser(AbstractUser):
         default=Role.CUSTOMER,
     )
 
-    # Add any other custom fields you need
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    phone_number = models.CharField(max_length=15)
 
     def __str__(self):
         return self.username
