@@ -1,52 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Chef - Welcome</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/main.js' %}" defer></script>
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-            <ul>
-                <li><a href="/" class="logo">The Chef</a></li>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="/reservations">Reservations</a></li>
-                <li><a href="/orders">Orders</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends 'base.html' %}
 
-    <main>
-        <section class="hero">
-            <h1>Welcome to The Chef</h1>
-            <p>Discover our delicious menu and make your reservation today!</p>
-            <a href="/menu" class="btn">Browse Menu</a>
-        </section>
+{% block title %}Welcome - The Chef{% endblock %}
 
-        <section class="features">
-            <div class="feature">
-                <h2>Delicious Food</h2>
-                <p>Explore a variety of mouth-watering dishes curated by top chefs.</p>
-            </div>
-            <div class="feature">
-                <h2>Easy Reservations</h2>
-                <p>Book your table in just a few clicks and enjoy a great dining experience.</p>
-            </div>
-            <div class="feature">
-                <h2>Quick Orders</h2>
-                <p>Order your favorite meals online and have them delivered straight to your door.</p>
-            </div>
-        </section>
-    </main>
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Welcome to The Chef</h1>
+    <p class="lead">Discover our delicious menu and make your reservation today!</p>
+    <a href="/menu" class="btn btn-primary btn-lg">Browse Menu</a>
+</div>
 
-    <footer>
-        <p>&copy; 2024 The Chef Restaurant. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+{% endblock %}

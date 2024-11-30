@@ -39,6 +39,7 @@ Thumbs.db
 
 # Local environment variables
 .env
+.venv
 
 # Media and static files
 /static/
