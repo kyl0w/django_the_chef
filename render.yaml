@@ -7,7 +7,7 @@ databases:
 services:
   - type: web
     plan: free
-    name: the_chef
+    name: django_the_chef
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn the_chef.asgi:application -k uvicorn.workers.UvicornWorker"
