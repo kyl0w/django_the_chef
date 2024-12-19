@@ -34,14 +34,8 @@ freeze:
 
 # Tests and Linter
 test:
-	$(MANAGE) test
-
-lint:
-	flake8 --config=$(LINTER_DIR)/.flake8 $(DJANGO_PROJECT_DIR)
-
-format:
-	black $(DJANGO_PROJECT_DIR)
-
+	$(MANAGE) tests
+	
 lint:
 	flake8 .
 
