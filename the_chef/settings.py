@@ -15,7 +15,7 @@ SECRET_KEY = "django-insecure-wlc=*jc0(7y$s-a$$h#h)j4tdzhr3qttch6fb*k*xk32*01r15
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://django-the-chef.onrender.com']
 
 
 # Application definition
