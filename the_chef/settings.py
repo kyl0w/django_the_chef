@@ -1,22 +1,13 @@
 import os
 from pathlib import Path
-import dj_database_url
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-wlc=*jc0(7y$s-a$$h#h)j4tdzhr3qttch6fb*k*xk32*01r15"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['https://django-the-chef.onrender.com']
-
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
 
 # Application definition
 
@@ -81,15 +72,24 @@ WSGI_APPLICATION = "the_chef.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# Replace the SQLite DATABASES configuration with PostgreSQL:
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/the_chef',
-        conn_max_age=600
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://postgres:rootuser@localhost:5432/the_chef',
+#         conn_max_age=600,  # Keeps database connections alive for 600 seconds.
+#         ssl_require=False  # Set to True if using SSL in production.
+#     )
+# }
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB"),  # Database name
+        "USER": os.getenv("POSTGRES_USER"),  # Database user
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),  # Database password
+        "HOST": os.getenv("POSTGRES_HOST"),  # Database host
+        "PORT": os.getenv("POSTGRES_PORT"),  # Database port
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -146,3 +146,6 @@ LOGIN_URL = "/login"
 
 LOGIN_REDIRECT_URL = "/home"
 LOGOUT_REDIRECT_UTL  = "/login"
+
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
