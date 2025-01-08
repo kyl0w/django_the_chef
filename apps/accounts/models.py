@@ -10,6 +10,11 @@ class Role(models.TextChoices):
 
 class CustomUser(AbstractUser):
 
+    username = None
+    email = models.EmailField( unique=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
     role = models.CharField(
         max_length=20,
         choices=Role.choices,
