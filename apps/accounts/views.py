@@ -21,7 +21,7 @@ def login(request):
     else:
         form = AuthenticationForm()
 
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'home.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def register(request):
             return redirect('login')  # Redirect to the login page after successful registration
     else:
         form = RegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+    return render(request, 'accounts/signup.html', {'form': form})
 
 def logout_view(request):
     auth_logout(request)  # Log out the user

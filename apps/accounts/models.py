@@ -9,7 +9,7 @@ class Role(models.TextChoices):
 
 
 class CustomUser(AbstractUser):
-
+    
     username = None
     email = models.EmailField( unique=True)
     USERNAME_FIELD = 'email'
