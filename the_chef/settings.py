@@ -1,21 +1,16 @@
-import os
+import os, sys
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-wlc=*jc0(7y$s-a$$h#h)j4tdzhr3qttch6fb*k*xk32*01r15"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', 'django-the-chef.onrender.com']
 
 # Application definition
 
@@ -27,20 +22,24 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # Third-party APPS
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+
     # APPS
-    "apps.accounts",
-    "apps.worker",
-    "apps.administration",
-    "apps.orders",
-    "apps.reviews",
-    "apps.reservations",
-    "apps.menu"
+    "accounts",
+    "worker",
+    "administration",
+    "orders",
+    "reviews",
+    "reservations",
+    "menu"
 ]
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -51,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "the_chef.urls"
@@ -80,14 +80,9 @@ WSGI_APPLICATION = "the_chef.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "the_chef",
-        "USER": "postgres",
-        "PASSWORD": "rootuser",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL", "postgresql://postgres:rootuser@localhost:5432/the_chef")
+    )
 }
 
 
@@ -127,6 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -141,4 +140,7 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_URL = "/login"
 
 LOGIN_REDIRECT_URL = "/home"
-LOGOUT_REDIRECT_UTL  = "/login"
+LOGOUT_REDIRECT_UTL  = "/home"
+
+CSRF_COOKIE_SECURE=True
+SESSION_COOKIE_SECURE=True
