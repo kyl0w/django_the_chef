@@ -5,14 +5,33 @@
 {% block title %}Menus{% endblock %}
 
 {% block content %}
-<div class="container fluid">
-    <div class="container-xl d-flex justify-content-center align-items-center" style="height: 200px;">
-        <h1>Food Menu</h1>
-    </div>
-    <hr>
-    <div class="container-xl text-center p-4">
-        {% for menu in menus %}
-            <p>{{ menu.name }}</p> <!-- Exemplo de exibição de um atributo do objeto menu -->
+<div class="container mt-4">
+    <h1>Menu</h1>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ category.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for dish in category.dishes.all %}
+                        <li class="list-group-item">
+                            <h6>{{ dish.name }}</h6>
+                            <p>{{ dish.description }}</p>
+                            <p><strong>Price:</strong> ${{ dish.price }}</p>
+                            {% if dish.is_available %}
+                            <span class="badge badge-success">Available</span>
+                            {% else %}
+                            <span class="badge badge-danger">Unavailable</span>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
