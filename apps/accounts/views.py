@@ -14,9 +14,14 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            auth_login(request, user)  # Using `auth_login` to avoid conflict
+            auth_login(request, user)  
 
-            next_url = request.GET.get('next', 'home')  # Redirect to the next URL or home
+            if user.role == 'Manager':
+                return redirect('manager')  
+            elif user.role == 'Employee':
+                return redirect('worker')   
+            
+            next_url = request.GET.get('next', 'home')
             return redirect(next_url)
     else:
         form = AuthenticationForm()
@@ -27,17 +32,21 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()  # This will automatically save the user and return the user object
-            # Set the password from the form before login
+            user = form.save()
             password = form.cleaned_data.get('password1')
             user.set_password(password)
             user.save()
-            auth_login(request, user)  # Log the user in
-            return redirect('login')  # Redirect to the login page after successful registration
+            auth_login(request, user)
+            if user.role == 'Manager':
+                return redirect('manager')
+            elif user.role == 'Employee':
+                return redirect('worker')
+            else:
+                return redirect('home')
     else:
         form = RegisterForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
 def logout_view(request):
-    auth_logout(request)  # Log out the user
-    return redirect('login')  # Redirect to the login page after logout
+    auth_logout(request) 
+    return redirect('login')  

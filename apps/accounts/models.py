@@ -7,7 +7,6 @@ class Role(models.TextChoices):
     EMPLOYEE = "Employee", "Employee"
     CUSTOMER = "Customer", "Customer"
 
-
 class CustomUser(AbstractUser):
     
     username = None
@@ -24,4 +23,4 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=15)
 
     def __str__(self):
-        return self.username
+        return self.email

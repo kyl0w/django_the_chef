@@ -22,13 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    # Third-party APPS
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-
+    
     # APPS
     "accounts",
     "worker",
@@ -36,7 +30,14 @@ INSTALLED_APPS = [
     "orders",
     "reviews",
     "reservations",
-    "menu"
+    "menu",
+
+    # Third-party APPS
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+
 ]
 
 
@@ -144,3 +145,6 @@ LOGOUT_REDIRECT_UTL  = "/home"
 
 CSRF_COOKIE_SECURE=True
 SESSION_COOKIE_SECURE=True
+
+# ADMIN PAINEL
+ADMIN_KEY = os.getenv('ADMIN_KEY')
