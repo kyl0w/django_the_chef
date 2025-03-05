@@ -1,5 +1,5 @@
 # Variables
-PYTHON = python
+PYTHON = py
 DJANGO_PROJECT_DIR = .
 MANAGE = $(PYTHON) $(DJANGO_PROJECT_DIR)/manage.py
 
@@ -34,15 +34,15 @@ freeze:
 
 # Tests and Linter
 test:
-	$(MANAGE) tests
-	
+	$(MANAGE) test
+
 lint:
 	flake8 .
 
 format:
 	black .
 
-format-lint: 
+format-lint:
 	lint format
 
 help:

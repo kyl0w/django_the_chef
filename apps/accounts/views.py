@@ -12,21 +12,24 @@ def login_view(request):
 def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
+        
         if form.is_valid():
+            # Autentica o usuário
             user = form.get_user()
-            auth_login(request, user)  
-
-            if user.role == 'Manager':
-                return redirect('manager')  
-            elif user.role == 'Employee':
-                return redirect('worker')   
+            auth_login(request, user)
             
+            # Redireciona para a página 'next' ou para 'home' caso não exista
             next_url = request.GET.get('next', 'home')
             return redirect(next_url)
+        else:
+            # Se o formulário não for válido, adicionar uma mensagem de erro
+            return render(request, 'accounts/login.html', {'form': form, 'error_message': 'Credenciais inválidas. Tente novamente.', 'data': form.errors}, status=400)
+    
     else:
+        # Exibe o formulário de login vazio
         form = AuthenticationForm()
 
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -36,13 +39,7 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user.set_password(password)
             user.save()
-            auth_login(request, user)
-            if user.role == 'Manager':
-                return redirect('manager')
-            elif user.role == 'Employee':
-                return redirect('worker')
-            else:
-                return redirect('home')
+            return redirect('login')
     else:
         form = RegisterForm()
     return render(request, 'accounts/signup.html', {'form': form})

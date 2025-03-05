@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
-from django.contrib.auth.forms import AuthenticationForm
-
+from django.core.exceptions import ValidationError
+import re
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -14,3 +14,16 @@ class RegisterForm(UserCreationForm):
         model = CustomUser
         fields = ['email', 'first_name', 'last_name', 'password1', 'password2', 'phone_number']
 
+    def clean_phone_number(self):
+        """Custom validation for phone number"""
+        phone_number = self.cleaned_data.get('phone_number')
+
+        # Verifique se o número de telefone contém apenas dígitos
+        if not phone_number.isdigit():
+            raise ValidationError("Phone number must contain only digits.")
+
+        # Verifique o formato do número de telefone (exemplo simples para números com 10 dígitos)
+        if not re.match(r'^\d{9,15}$', phone_number):
+            raise ValidationError("Phone number must be between 9 and 15 digits.")
+
+        return phone_number
