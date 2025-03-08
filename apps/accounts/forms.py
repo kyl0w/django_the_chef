@@ -18,12 +18,10 @@ class RegisterForm(UserCreationForm):
         """Custom validation for phone number"""
         phone_number = self.cleaned_data.get('phone_number')
 
-        # Verifique se o número de telefone contém apenas dígitos
         if not phone_number.isdigit():
-            raise ValidationError("Phone number must contain only digits.")
+            raise ValidationError("Numero de telefone deve conter apenas números.")
 
-        # Verifique o formato do número de telefone (exemplo simples para números com 10 dígitos)
-        if not re.match(r'^\d{9,15}$', phone_number):
-            raise ValidationError("Phone number must be between 9 and 15 digits.")
+        if not re.match(r'^\d{9}$', phone_number):
+            raise ValidationError("Deve conter 9 digitos.")
 
         return phone_number

@@ -1,9 +1,9 @@
 {% load static %}
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #2c3e50;">
+<nav class="navbar navbar-expand-md navbar-dark">
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand order-md-1 me-auto" href="/">
-            <h1 class="text-warning">The Chef</h1>
+            <h1 class="" style="color: green;">THE CHEF</h1>
         </a>
 
         <!-- Hamburger Menu Toggle (Alinhado à direita) -->
@@ -22,23 +22,14 @@
                     <!-- Logged-in User Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Welcome, {{ user.username }}
+                            Welcome, {{ user.first_name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                     </li>
                 {% else %}
-                    <!-- Guest Dropdown (Login / Sign Up) -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Login / Sign Up
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="authDropdown">
-                            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-                            <li><a class="dropdown-item" href="{% url 'register' %}">Sign Up</a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item"><a class="nav-link text-success fw-bold" href="{% url 'login' %}">ENTRAR</a></li>
                 {% endif %}
             </ul>
         </div>
